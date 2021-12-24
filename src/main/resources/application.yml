@@ -1,0 +1,40 @@
+#server.port=${PORT:8081}
+#spring.application.name=api-gateway
+#eureka.client.register-with-eureka=true
+#eureka.client.fetch-registry=true
+#eureka.client.serviceUrl.defaultZone = http://localhost:8761/eureka
+#spring.cloud.gateway.discovery.locator.enabled=true
+#spring.cloud.gateway.discovery.locator.lower-case-service-id=true
+#spring.cloud.gateway.routes[0].id=user
+#spring.cloud.gateway.routes[0].uri=lb://USER-WS
+#spring.cloud.gateway.routes[0].predicates[0]=Path=/api/user/**
+
+server:
+  port: 8081
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: admin-ws
+        uri: admin-ws
+        predicates:
+        - Path=/api/admin/**
+
+      discovery:
+        enabled: true
+        locator:
+          enabled: true
+        
+
+  application:
+    name: api-gateway
+
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: true
+    service-url:
+    - defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
