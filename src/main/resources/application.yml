@@ -20,6 +20,21 @@ spring:
           predicates:
             - Path=/api/v1.0/flight/**
 
+        - id: admin-ws
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/admin/**
+
+        - id: flight-ws
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/admin/**
+
+        - id: common-ws
+          uri: http://localhost:8085
+          predicates:
+            - Path=/api/admin/**
+
       discovery:
         enabled: true
         locator:
